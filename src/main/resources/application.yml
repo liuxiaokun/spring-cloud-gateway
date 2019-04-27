@@ -9,6 +9,9 @@ eureka:
 spring:
   application:
     name: cloudoer-gateway
+  redis:
+    host: 192.168.1.12
+    port: 6378
   cloud:
     gateway:
       discovery:
@@ -43,3 +46,8 @@ spring:
           - Path=/uaaa/**
         filters:
           - StripPrefix=1
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 10
+              redis-rate-limiter.burstCapacity: 20
+              key-resolver: "#{@ipKeyResolver}"
