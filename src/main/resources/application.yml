@@ -22,3 +22,24 @@ spring:
         - Path=/common/**
         filters:
         - StripPrefix=1
+
+      - id: cloudoer-cl-community
+        uri: lb://cloudoer-cl-community
+        predicates:
+          - Path=/community/**
+        filters:
+          - StripPrefix=1
+
+      - id: cloudoer-cl-mall
+        uri: lb://cloudoer-cl-mall
+        predicates:
+          - Path=/mall/**
+        filters:
+          - StripPrefix=1
+
+      - id: cloudoer-cl-uaaa
+        uri: lb://cloudoer-cl-uaaa
+        predicates:
+          - Path=/uaaa/**
+        filters:
+          - StripPrefix=1
