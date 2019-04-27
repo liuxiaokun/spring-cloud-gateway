@@ -1,2 +1,24 @@
 server:
   port: 7865
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.12:8763/eureka/
+
+spring:
+  application:
+    name: cloudoer-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: cloudoer-cl-common
+        uri: lb://cloudoer-cl-common
+        predicates:
+        - Path=/common/**
+        filters:
+        - StripPrefix=1
