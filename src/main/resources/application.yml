@@ -51,3 +51,6 @@ spring:
               redis-rate-limiter.replenishRate: 10
               redis-rate-limiter.burstCapacity: 20
               key-resolver: "#{@ipKeyResolver}"
+
+jwt:
+  secret: my-secret
