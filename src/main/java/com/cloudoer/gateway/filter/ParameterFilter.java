@@ -13,12 +13,10 @@ import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.core.io.buffer.NettyDataBufferFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -42,6 +40,14 @@ public class ParameterFilter implements GlobalFilter, Ordered {
     private static final String OBJECT_PREFIX = "{";
     private static final String ARRAY_PREFIX = "[";
 
+    /**
+     * handing request body，trim value and prevent xss attacking,
+     * when method is post, put, patch.
+     *
+     * @param exchange the current server exchange
+     * @param chain provides a way to delegate to the next filter
+     * @return {@code Mono<Void>} to indicate when request processing is complete
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
@@ -65,11 +71,9 @@ public class ParameterFilter implements GlobalFilter, Ordered {
                     }
                     newBody = parse.toString();
                 }
-
                 ServerHttpRequest newRequest = request.mutate().uri(uri).build();
                 DataBuffer bodyDataBuffer = stringBuffer(newBody);
                 Flux<DataBuffer> bodyFlux = Flux.just(bodyDataBuffer);
-
                 request = new ServerHttpRequestDecorator(newRequest) {
                     @Override
                     public Flux<DataBuffer> getBody() {
