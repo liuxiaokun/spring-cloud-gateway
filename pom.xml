@@ -8,10 +8,10 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.cloudoer.gateway</groupId>
-    <artifactId>cloudoer-gateway</artifactId>
+    <groupId>com.fred.gateway</groupId>
+    <artifactId>fred-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloudoer-gateway</name>
+    <name>gateway</name>
     <description>统一路由网关</description>
 
     <properties>

@@ -8,7 +8,7 @@ eureka:
 
 spring:
   application:
-    name: cloudoer-gateway
+    name: fred-gateway
   redis:
     host: 192.168.1.12
     port: 6378
@@ -19,29 +19,29 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-      - id: cloudoer-cl-common
-        uri: lb://cloudoer-cl-common
+      - id: cl-common
+        uri: lb://common
         predicates:
         - Path=/common/**
         filters:
         - StripPrefix=1
 
-      - id: cloudoer-cl-community
-        uri: lb://cloudoer-cl-community
+      - id: cl-community
+        uri: lb://community
         predicates:
           - Path=/community/**
         filters:
           - StripPrefix=1
 
-      - id: cloudoer-cl-mall
-        uri: lb://cloudoer-cl-mall
+      - id: cl-mall
+        uri: lb://mall
         predicates:
           - Path=/mall/**
         filters:
           - StripPrefix=1
 
-      - id: cloudoer-cl-uaaa
-        uri: lb://cloudoer-cl-uaaa
+      - id: cl-uaaa
+        uri: lb://uaaa
         predicates:
           - Path=/uaaa/**
         filters:
