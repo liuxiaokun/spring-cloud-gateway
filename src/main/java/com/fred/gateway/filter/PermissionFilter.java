@@ -1,4 +1,4 @@
-package com.cloudoer.gateway.filter;
+package com.fred.gateway.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
