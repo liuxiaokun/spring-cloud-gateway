@@ -1,4 +1,4 @@
-package com.fred.gateway.filter;
+package com.byx.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

@@ -1,49 +1,47 @@
 server:
-  port: 7865
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://192.168.1.12:8763/eureka/
+  port: 7001
 
 spring:
   application:
-    name: fred-gateway
+    name: byx-gateway
   redis:
-    host: 192.168.1.12
-    port: 6378
+    host: 192.168.2.200
+    port: 6379
   cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.200:8848
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
       routes:
-      - id: cl-common
-        uri: lb://common
+      - id: lk-comm
+        uri: lb://lk-comm
         predicates:
-        - Path=/common/**
+        - Path=/comm/**
         filters:
         - StripPrefix=1
 
-      - id: cl-community
-        uri: lb://community
+      - id: lk-rbac
+        uri: lb://lk-rbac
         predicates:
-          - Path=/community/**
+          - Path=/rbac/**
         filters:
           - StripPrefix=1
 
-      - id: cl-mall
-        uri: lb://mall
+      - id: lk-mall
+        uri: lb://lk-mall
         predicates:
           - Path=/mall/**
         filters:
           - StripPrefix=1
 
-      - id: cl-uaaa
-        uri: lb://uaaa
+      - id: lk-mgt
+        uri: lb://lk-mgt
         predicates:
-          - Path=/uaaa/**
+          - Path=/mgt/**
         filters:
           - StripPrefix=1
           - name: RequestRateLimiter

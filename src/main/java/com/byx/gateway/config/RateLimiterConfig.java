@@ -1,4 +1,4 @@
-package com.fred.gateway.config;
+package com.byx.gateway.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;

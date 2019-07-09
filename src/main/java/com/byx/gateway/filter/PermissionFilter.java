@@ -1,4 +1,4 @@
-package com.fred.gateway.filter;
+package com.byx.gateway.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -29,7 +29,7 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
-@Component
+//@Component
 @Slf4j
 public class PermissionFilter implements GlobalFilter, Ordered {
 
